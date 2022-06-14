@@ -7,18 +7,30 @@
 
 // Console.WriteLine("Квадрат числа " + num + " равен: " + result);
 
-int num1, num2;
+// int num1, num2;
 
-Console.Write("Введите первое натуральное число: ");
+// Console.Write("Введите первое натуральное число: ");
+// num1 = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Введите второе натуральное число: ");
+// num2 = Convert.ToInt32(Console.ReadLine());
+
+// if (num1 == num2 * num2)
+// {
+// 	Console.WriteLine("Число " + num1 + " является квадратом числа " + num2);
+// }
+// else
+// {
+// 	Console.WriteLine("Число " + num1 + " не является квадратом числа " + num2);
+// }
+
+int num1, current;
+
+Console.Write("Введите натуральное число: ");
 num1 = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите второе натуральное число: ");
-num2 = Convert.ToInt32(Console.ReadLine());
+current = -num1;
 
-if (num1 == num2 * num2)
+while (current <= num1)
 {
-	Console.WriteLine("Число " + num1 + " является квадратом числа " + num2);
-}
-else
-{
-	Console.WriteLine("Число " + num1 + " не является квадратом числа " + num2);
+	Console.Write(current + ", ");
+	current++;
 }
