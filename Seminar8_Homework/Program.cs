@@ -87,26 +87,40 @@ int num = NumMinSumRowsMatrix(array);
 Console.WriteLine($"{num} строка"); */
 
 // Заполните спирально массив 4 на 4.
-/* int[,] SpiralMatrix(int m)
+/* int[,] RoundMatrix(int[,] newMatrix, int num, int i, int k, int step, int o)
 {
-	int[,] newMatrix = new int[m, m];
-	int num = 1, i = 0, k = 1;
-	for (int j = 0; j < newMatrix.GetLength(1); j++) newMatrix[i, j] = num++;
-	num--;
-	for (int j = newMatrix.GetLength(1) - k; i < newMatrix.GetLength(0); i++) newMatrix[i, j] = num++;
-	num--;
-	i--;
-	for (int j = newMatrix.GetLength(1) - k; j >= 0; j--) newMatrix[i, j] = num++;
-	num--;
-	for (int j = 0; i >= k; i--) newMatrix[i, j] = num++;
-	i++;
-	for (int j = k; j < newMatrix.GetLength(1) - k; j++) newMatrix[i, j] = num++;
-	num--;
-	for (int j = newMatrix.GetLength(1) - ++k; i < newMatrix.GetLength(0) - 1; i++) newMatrix[i, j] = num++;
-	num--;
-	i--;
-	for (int j = newMatrix.GetLength(1) - k; j >= k - 1; j--) newMatrix[i, j] = num++;
-
+	double temp1 = Convert.ToDouble(newMatrix.GetLength(0) + newMatrix.GetLength(1)) / 4;
+	double temp2 = temp1 - Math.Truncate(temp1);
+	for (int l = 0; l < o; l++)
+	{
+		for (int j = k; j < newMatrix.GetLength(1) - k; j++) newMatrix[i, j] = num++;
+		num--;
+		step++;
+		for (int j = newMatrix.GetLength(1) - ++k; i < newMatrix.GetLength(0) - step; i++) newMatrix[i, j] = num++;
+		num--;
+		i--;
+		for (int j = newMatrix.GetLength(1) - k; j >= k - 1; j--) newMatrix[i, j] = num++;
+		num--;
+		for (int j = step; i >= k; i--) newMatrix[i, j] = num++;
+		i++;
+	}
+	if (temp2 == 0.75)
+	{
+		for (int j = k; j < newMatrix.GetLength(1) - k; j++) newMatrix[i, j] = num++;
+		num--;
+		step++;
+		for (int j = newMatrix.GetLength(1) - ++k; i < newMatrix.GetLength(0) - step; i++) newMatrix[i, j] = num++;
+		num--;
+		i--;
+	}
+	if (newMatrix.GetLength(0) % 2 != 0 && newMatrix.GetLength(1) % 2 != 0) newMatrix[newMatrix.GetLength(0) / 2, newMatrix.GetLength(1) / 2] = num++;
+	return newMatrix;
+}
+int[,] SpiralMatrix(int m, int n)
+{
+	int[,] newMatrix = new int[m, n];
+	int num = 1, i = 0, k = 0, step = -1, o = (m + n) / 4;
+	newMatrix = RoundMatrix(newMatrix, num, i, k, step, o);
 	return newMatrix;
 }
 void ShowMatrix(int[,] matrix)
@@ -118,7 +132,15 @@ void ShowMatrix(int[,] matrix)
 	}
 }
 
-
-int m = 4;
-int[,] matrix = SpiralMatrix(m);
+int m = 0, n = 0;
+do
+{
+	Console.WriteLine("Введите ширину и высоту матрицы, но ширина и высота не должны превышать друг друга больше чем на 1: ");
+	Console.Write("Введите количество строк массива: ");
+	m = Convert.ToInt32(Console.ReadLine());
+	Console.Write("Введите количество столбцов массива: ");
+	n = Convert.ToInt32(Console.ReadLine());
+}
+while (m != n && m + 1 != n && n + 1 != m);
+int[,] matrix = SpiralMatrix(m, n);
 ShowMatrix(matrix); */
